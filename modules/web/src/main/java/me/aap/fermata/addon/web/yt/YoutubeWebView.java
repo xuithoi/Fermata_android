@@ -222,6 +222,68 @@ public class YoutubeWebView extends FermataWebView {
 				"setVideoQuality(" + idx + ", 0, true);");
 	}
 
+	void setHighestVideoQuality() {
+		loadUrl("javascript:\n" +
+				"(function() {\n" +
+				"  var observer = null;\n" +
+				"  var timeout = null;\n" +
+				"  var clickedQuality = false;\n" +
+				"  function cleanup() {\n" +
+				"    if (observer) { observer.disconnect(); observer = null; }\n" +
+				"    if (timeout) { clearTimeout(timeout); timeout = null; }\n" +
+				"  }\n" +
+				"  function closeMenu() {\n" +
+				"    var close = document.querySelector('bottom-sheet-layout button.hidden-button');\n" +
+				"    if (close) close.click();\n" +
+				"  }\n" +
+				"  function getQualityRank(label) {\n" +
+				"    if (!label) return -1;\n" +
+				"    if (/^auto/i.test(label)) return -1;\n" +
+				"    var match = label.match(/(\\\\d+)p/i);\n" +
+				"    if (match) return parseInt(match[1], 10);\n" +
+				"    match = label.match(/(\\\\d+)k/i);\n" +
+				"    if (match) return parseInt(match[1], 10) * 540;\n" +
+				"    return -1;\n" +
+				"  }\n" +
+				"  function tryProcess() {\n" +
+				"    var sheet = document.querySelector('bottom-sheet-layout');\n" +
+				"    if (!sheet) return;\n" +
+				"    var items = Array.from(sheet.querySelectorAll('yt-list-item-view-model'));\n" +
+				"    if (!clickedQuality) {\n" +
+				"      var qualityItem = items.find(function(el) {\n" +
+				"        return el.innerText && el.innerText.startsWith('Quality');\n" +
+				"      });\n" +
+				"      if (qualityItem) {\n" +
+				"        clickedQuality = true;\n" +
+				"        qualityItem.click();\n" +
+				"      }\n" +
+				"      return;\n" +
+				"    }\n" +
+				"    var hasAuto = items.some(function(el) {\n" +
+				"      return el.innerText && /^auto/i.test(el.innerText);\n" +
+				"    });\n" +
+				"    if (!hasAuto) return;\n" +
+				"    var bestItem = null;\n" +
+				"    var bestRank = -1;\n" +
+				"    items.forEach(function(el) {\n" +
+				"      var rank = getQualityRank(el.innerText || '');\n" +
+				"      if (rank > bestRank) { bestRank = rank; bestItem = el; }\n" +
+				"    });\n" +
+				"    if (bestItem) {\n" +
+				"      cleanup();\n" +
+				"      bestItem.click();\n" +
+				"      setTimeout(closeMenu, 200);\n" +
+				"    }\n" +
+				"  }\n" +
+				"  var btn = document.querySelector('.player-settings-icon');\n" +
+				"  if (!btn) return;\n" +
+				"  observer = new MutationObserver(tryProcess);\n" +
+				"  observer.observe(document.body, { childList: true, subtree: true });\n" +
+				"  timeout = setTimeout(function() { cleanup(); closeMenu(); }, 5000);\n" +
+				"  btn.click();\n" +
+				"})();");
+	}
+
 	private FutureSupplier<Long> getMilliseconds(String value) {
 		Promise<Long> p = new Promise<>();
 		evaluateJavascript(

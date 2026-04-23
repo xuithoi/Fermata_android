@@ -26,7 +26,6 @@ jobs:
       - name: Grant execute permission
         run: chmod +x gradlew
 
-      # ✅ THIS is where your step must go
       - name: Create dummy google-services.json
         run: |
           mkdir -p fermata
@@ -45,18 +44,41 @@ jobs:
                     "package_name": "me.aap.fermata"
                   }
                 },
-                "api_key": [
-                  {
-                    "current_key": "dummy_key"
+                "api_key": [{"current_key": "dummy_key"}]
+              },
+              {
+                "client_info": {
+                  "mobilesdk_app_id": "1:123456789:android:abcdef",
+                  "android_client_info": {
+                    "package_name": "me.aap.fermata.debug"
                   }
-                ]
+                },
+                "api_key": [{"current_key": "dummy_key"}]
+              },
+              {
+                "client_info": {
+                  "mobilesdk_app_id": "1:123456789:android:abcdef",
+                  "android_client_info": {
+                    "package_name": "me.aap.fermata.auto"
+                  }
+                },
+                "api_key": [{"current_key": "dummy_key"}]
+              },
+              {
+                "client_info": {
+                  "mobilesdk_app_id": "1:123456789:android:abcdef",
+                  "android_client_info": {
+                    "package_name": "me.aap.fermata.auto.debug"
+                  }
+                },
+                "api_key": [{"current_key": "dummy_key"}]
               }
             ],
             "configuration_version": "1"
           }
           EOF
 
-      - name: Build APK
+      - name: Build Debug APK
         run: ./gradlew assembleDebug
 
       - name: Upload APKs

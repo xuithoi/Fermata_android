@@ -78,11 +78,12 @@ jobs:
           }
           EOF
 
-      - name: Build Debug APK
-        run: ./gradlew assembleDebug
+      - name: Build Debug APK (Fermata only, excluding gdrive)
+        run: ./gradlew assembleDebug -x :gdrive:assembleDebug -x :gdrive:compileAutoDebugJavaWithJavac
 
       - name: Upload APKs
         uses: actions/upload-artifact@v4
         with:
           name: apk
           path: "**/*.apk"
+          if-no-files-found: ignore

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="addons">Дополнения</string>
+    <string name="addon_name_web_browser">Веб браузер</string>
+
+    <string name="interface_prefs">Интерфейс</string>
+    <string name="playback_settings">Найстройки воспроизведения</string>
+    <string name="playback_control">Управление воспроизведением</string>
+    <string name="engine_prefs">Медиа движок</string>
+
+    <string name="theme">Тема приложения</string>
+    <string name="theme_sub">Текущая тема: %1$s</string>
+    <string name="theme_light">Светлая</string>
+    <string name="theme_dark">Темная</string>
+    <string name="theme_day_night">День/Ночь</string>
+    <string name="theme_black">Черная</string>
+
+    <string name="hide_bars">Скрывать панели</string>
+    <string name="hide_bars_sub">Скрывать верхнюю и нижнюю панель, когда появляется панель управления</string>
+    <string name="fullscreen_mode">Полноэкранный режим</string>
+    <string name="show_track_icons">Показывать иконки треков</string>
+    <string name="text_icon_scale">Маштаб текста и иконки</string>
+
+    <string name="play_next_on_completion">Воспроизводить следующий трек</string>
+
+    <string name="rw_ff_click">Назад/Вперед - нажатие</string>
+    <string name="rw_ff_long_click">Назад/Вперед - долгое нажатие</string>
+    <string name="prev_next_long_click">Предыдущий/Следующий - долгое нажатие</string>
+    <string name="play_pause_stop">Стоп при долгом нажати на Воспроизведение/Пауза</string>
+
+    <string name="time">Время</string>
+    <string name="time_unit">Единица времени</string>
+    <string name="time_unit_sub">Текущее знаение: %1$s</string>
+    <string name="time_unit_second">Секунда</string>
+    <string name="time_unit_minute">Минута</string>
+    <string name="time_unit_percent">Процент</string>
+
+    <string name="video_control">Управление видео</string>
+    <string name="video_control_start_delay">Показывать при старте</string>
+    <string name="video_control_touch_delay">Показывать при касании</string>
+    <string name="video_control_seek_delay">Показывать при перемотке</string>
+    <string name="video_aa_show_status">Показывать статус бар в Android Auto</string>
+
+    <string name="enable_exoplayer">Включить ExoPlayer</string>
+    <string name="enable_vlcplayer">Включить VLC</string>
+    <string name="preferred_audio_engine">Предпочтительный аудио движок</string>
+    <string name="preferred_video_engine">Предпочтительный видео движок</string>
+    <string name="engine_installed">Медиа движок установлен: %1$s</string>
+    <string name="engine_uninstalled">Медиа движок удален: %1$s</string>
+
+    <string name="module_installation">Установка модуля: %1$s</string>
+    <string name="install_pending">Ожидание инсталляции: %1$s</string>
+    <string name="downloading">Скачивание %1$s</string>
+    <string name="installing">Установка %1$s</string>
+
+    <string name="speed">Скорость</string>
+    <string name="audio_effects">Аудио эффекты</string>
+    <string name="equalier">Эквалайзер</string>
+    <string name="preset_name">Название пресета</string>
+    <string name="virtualizer">Виртуалайзер</string>
+    <string name="auto">Авто</string>
+    <string name="binaural">Бинауральный</string>
+    <string name="transaural">Трансауральный</string>
+    <string name="bass_boost">Усиление басов</string>
+    <string name="strength">Уровень</string>
+    <string name="apply_to">Применить к</string>
+
+    <string name="video">Видео</string>
+    <string name="video_settings">Настройки видео</string>
+    <string name="video_scaling">Масштабирование видео</string>
+    <string name="video_scaling_best">Наиболее подходящее</string>
+    <string name="video_scaling_fill">Заполнить экран</string>
+    <string name="video_scaling_orig">Оригинальный размер</string>
+
+    <string name="audio">Аудио</string>
+    <string name="audio_delay">Задержка аудио</string>
+    <string name="preferred_audio_lang">Предпочитаемые языки аудио</string>
+    <string name="preferred_audio_key">Предпочитать аудио дорожку с ключевыми словами</string>
+    <string name="select_audio_stream">Выбрать аудио дорожку</string>
+
+    <string name="subtitles">Субтитры</string>
+    <string name="subtitle_delay">Задержка субтитров</string>
+    <string name="display_subtitles">Показывать субтитры</string>
+    <string name="preferred_sub_lang">Предпочитаемые языки субтитров</string>
+    <string name="preferred_sub_key">Предпочитать субтитры с ключевыми словами</string>
+    <string name="select_subtitles">Выбрать субтитры</string>
+
+    <string name="eq_hz">%1$s Гц</string>
+    <string name="eq_khz">%1$s кГц</string>
+
+    <string name="current_track">Текущий трек</string>
+    <string name="current_folder">Текущая папка</string>
+
+    <string name="folders">Папки</string>
+    <string name="favorites">Избранное</string>
+    <string name="playlists">Плейлисты</string>
+    <string name="search">Поиск</string>
+    <string name="filter">Фильтр</string>
+    <string name="settings">Настройки</string>
+    <string name="menu">Меню</string>
+    <string name="exit">Выход</string>
+    <string name="cancel">Отменить</string>
+    <string name="got_to_current">Текущий трек</string>
+
+    <string name="view">Вид</string>
+    <string name="title">Заголовок</string>
+    <string name="subtitle">Подзаголовок</string>
+    <string name="seq_num">Порядковый номер</string>
+    <string name="track_name">Название</string>
+    <string name="file_name">Имя файла</string>
+    <string name="date">Дата</string>
+    <string name="random">Произвольно</string>
+    <string name="descending">По убыванию</string>
+    <string name="album">Альбом</string>
+    <string name="artist">Исполнитель</string>
+    <string name="duration">Длительность</string>
+
+    <string name="sort_by">Сортировать по</string>
+    <string name="do_not_sort">Не сортировать</string>
+
+    <string name="play">Играть</string>
+    <string name="pause">Пауза</string>
+    <string name="stop">Стоп</string>
+    <string name="prev">Предыдущий</string>
+    <string name="next">Следующй</string>
+    <string name="rewind">Назад</string>
+    <string name="fast_forward">Вперед</string>
+    <string name="repeat">Повторять</string>
+    <string name="repeat_disable">Не повторять</string>
+    <string name="shuffle">Перемешать</string>
+    <string name="shuffle_disable">Не перемешивать</string>
+    <string name="favorites_add">Добавить в избранное</string>
+    <string name="favorites_remove">Удалть из избранного</string>
+    <string name="mark_watched">Пометить как просмотренное</string>
+    <string name="mark_unwatched">Пометить как не просмотренное</string>
+    <string name="preferred_media_engine">Предпочтительный медиа движок</string>
+    <string name="by_default">По умолчанию</string>
+
+    <string name="playlist_add">Добавить в плейлист</string>
+    <string name="playlist_remove_item">Удалть из плейлиста</string>
+    <string name="playlist_create">Создать плейлист</string>
+    <string name="playlist_remove">Удалить плейлист</string>
+    <string name="playlist_name">Название плейлиста</string>
+
+    <string name="bookmarks">Закладки</string>
+    <string name="create_bookmark">Создать закладку</string>
+    <string name="remove_bookmark">Удалить закладку</string>
+    <string name="remove_all_bookmarks">Удалить все закладки</string>
+    <string name="bookmark_name">Название</string>
+    <string name="bookmark_time">Время</string>
+
+    <string name="folder_subtitle">Файлов: %1$d. Папок: %2$d.</string>
+    <string name="browsable_subtitle">Треков: %1$d.</string>
+    <string name="add_folder">Добавить папку</string>
+    <string name="remove_folder">Удалить папку</string>
+    <string name="select">Выбрать</string>
+    <string name="select_all">Выбрать все</string>
+    <string name="unselect_all">Отменить выбор</string>
+    <string name="refresh">Обновить</string>
+    <string name="rescan">Пересканировать</string>
+    <string name="loading">Загрузка…</string>
+    <string name="press_back_again">Нажмите кнопку назад еще раз, чтобы выйти.</string>
+    <string name="press_x_again">Нажмите кнопку X еще раз, чтобы выйти.</string>
+    <string name="please_restart_app">Пожалуйста, перезапустите приложение.</string>
+    <string name="use_phone_to_grant_perm">Пожалуйста, воспользуйтесь телефоном, чтобы предоставить необходимые разрешения.</string>
+
+    <string name="vfs_content">Контент</string>
+    <string name="vfs_file_system">Файловая система</string>
+    <string name="vfs_gdrive">Google диск</string>
+
+    <string name="eq_manual">Ручные</string>
+    <string name="eq_normal">Нормальные</string>
+    <string name="eq_classical">Классика</string>
+    <string name="eq_dance">Танцевальная</string>
+    <string name="eq_flat">Бемоль</string>
+    <string name="eq_folk">Фолк</string>
+    <string name="eq_heavy_metal">Тяжелый металл</string>
+    <string name="eq_hip_hop">Хип-хоп</string>
+    <string name="eq_jazz">Джаз</string>
+    <string name="eq_pop">Поп</string>
+    <string name="eq_rock">Рок</string>
+
+    <string name="host">Хост</string>
+    <string name="port">Порт</string>
+    <string name="path">Путь</string>
+    <string name="share_name">Имя директории</string>
+    <string name="domain">Домен</string>
+    <string name="username">Имя пользователя</string>
+    <string name="password">Пароль</string>
+    <string name="private_key">Приватный ключ</string>
+    <string name="private_key_pass">Пароль приватного ключа</string>
+
+    <string name="donate">Кофе разработчику</string>
+    <string name="donate_text">Если вам нравится приложение, вы можете купить мне кофе.</string>
+    <string name="use_phone_for_donation">Пожалуйста, воспользуйтесь телефоном, чтобы купить кофе.</string>
+
+    <string name="timer">Таймер</string>
+    <string name="hours">Часы</string>
+    <string name="minutes">Минуты</string>
+
+    <string name="enable">Включить</string>
+
+    <string name="about">О приложении</string>
+    <string name="about_html"><![CDATA[<H1 align="center">Fermata Media Player</H1>
+        <p>Fermata Media Player - это бесплатный, с открытым исходным кодом, аудио и видео плеер
+        с простым и интуитивным интерфейсом.</p>
+        <p>Если вам нравится приложение, пожалуйста, рассмотрите
+        возможность сделать пожертвование, посетив домашнюю страницу приложения:
+        <a href="%1$s">%2$s</a></p>
+        <p><b>Автор:</b> Андрей Павленко</p>
+        <p><b>Версия:</b> %3$s (%4$d)</p>
+        ]]></string>
+
+    <string name="err_failed_to_play">Не удалось воспроизвести %s</string>
+    <string name="err_failed_to_play_cause">Не удалось воспроизвести %1$s: %2$s</string>
+    <string name="err_unsupported_source_type">Неподдерживаемый тип источника: %s</string>
+    <string name="err_playlist_exists">Плейлист уже существует: %1$s</string>
+    <string name="err_invalid_playlist_name">Невалидное имя плейлиста: %1$s</string>
+    <string name="err_failed_add_folder">Не удалось добавить директорию: %1$s</string>
+    <string name="err_failed_open_url">Не удалось открыть URL: %1$s</string>
+    <string name="err_failed_install_module">Не удалось установить модуль: %1$s</string>
+</resources>

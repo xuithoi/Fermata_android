@@ -1,0 +1,18 @@
+android {
+    defaultConfig {
+        versionCode 1
+        versionName "1.0"
+
+        ndk {
+            abiFilters = ABI_FILTERS
+        }
+    }
+}
+
+dependencies {
+    implementation project(':utils')
+    implementation project(':fermata')
+    implementation 'androidx.core:core:' + ANDROIDX_CORE_VERSION
+    implementation 'androidx.appcompat:appcompat:' + ANDROIDX_APPCOMPAT_VERSION
+    implementation 'org.videolan.android:libvlc-all:3.3.9'
+}

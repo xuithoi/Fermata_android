@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <attr name="appMediaItemStyle" format="reference" />
+    <attr name="appControlPanelStyle" format="reference" />
+    <attr name="appSeekBarStyle" format="reference" />
+    <attr name="appEqualizerStyle" format="reference" />
+
+    <style name="AppTheme" parent="Theme.Utils.Base">
+        <item name="android:windowBackground">@drawable/app_background</item>
+        <item name="android:navigationBarColor">?attr/colorPrimary</item>
+
+        <item name="appMediaItemStyle">@style/AppTheme.MediaItemStyle</item>
+        <item name="appControlPanelStyle">@style/AppTheme.ControlPanelStyle</item>
+        <item name="appSeekBarStyle">@style/AppTheme.SeekBarStyle</item>
+        <item name="appEqualizerStyle">@style/AppTheme.EqualizerStyle</item>
+    </style>
+
+    <style name="AppTheme.MediaItemStyle">
+        <item name="android:textColor">@color/media_item_text_color</item>
+        <item name="tint">@color/media_item_tint</item>
+        <item name="elevation">20dp</item>
+    </style>
+
+    <style name="AppTheme.ControlPanelStyle">
+        <item name="android:colorBackground">?attr/colorPrimary</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="tint">?attr/colorOnPrimary</item>
+    </style>
+
+    <style name="AppTheme.SeekBarStyle">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:thumbTint">?attr/colorOnPrimary</item>
+        <item name="android:progressTint">?attr/colorOnPrimary</item>
+    </style>
+
+    <style name="AppTheme.EqualizerStyle">
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+        <item name="tint">?attr/colorOnSecondary</item>
+    </style>
+
+</resources>

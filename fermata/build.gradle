@@ -1,0 +1,87 @@
+apply plugin: 'com.google.gms.google-services'
+
+android {
+    defaultConfig {
+        applicationId "me.aap.fermata"
+        versionCode VERSION_CODE
+        versionName VERSION_NAME
+        setProperty("archivesBaseName", "fermata-$versionName")
+    }
+
+    if (localProps['storeFile'] != null) {
+        signingConfigs {
+            release {
+                storeFile file(localProps["storeFile"])
+                storePassword localProps["storePassword"]
+                keyAlias localProps["keyAlias"]
+                keyPassword localProps["keyPassword"]
+            }
+        }
+    }
+
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java', 'src/share/java']
+            res.srcDirs = ['src/main/res', 'src/share/res']
+        }
+    }
+
+    buildTypes {
+        release {
+            debuggable false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
+                    '../proguard-rules.pro', '../depends/utils/proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            debuggable true
+            applicationIdSuffix '.debug'
+            signingConfig signingConfigs.release
+        }
+    }
+
+    flavorDimensions "version"
+
+    productFlavors {
+        mobile {
+            dimension "version"
+            resValue "string", "app_name", "@string/app_name_mobile"
+            buildConfigField "boolean", 'AUTO', 'false'
+        }
+
+        auto {
+            dimension "version"
+            applicationIdSuffix '.auto'
+            resValue "string", "app_name", "@string/app_name_auto"
+            buildConfigField "boolean", 'AUTO', 'true'
+
+            dependencies {
+                implementation fileTree(dir: 'lib/auto', include: ['*.aar'])
+            }
+        }
+    }
+
+    dynamicFeatures.addAll(gradle.ext.modules)
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+    }
+}
+
+dependencies {
+    implementation project(':utils')
+    implementation 'androidx.media:media:' + ANDROIDX_MEDIA_VERSION
+    implementation 'androidx.appcompat:appcompat:' + ANDROIDX_APPCOMPAT_VERSION
+    implementation 'com.google.android.material:material:' + ANDROID_MATERIAL_VERSION
+    implementation "androidx.constraintlayout:constraintlayout:" + ANDROIDX_CONSTRAINTLAYOUT_VERSION
+    implementation 'com.google.android.play:core:' + ANDROID_PLAY_CORE_VERSION
+}

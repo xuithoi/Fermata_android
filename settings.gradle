@@ -1,0 +1,26 @@
+rootProject.name = 'Fermata Music Player'
+gradle.ext.modules = []
+gradle.ext.addonInfo = new StringBuilder(512)
+gradle.ext.localProps = new Properties()
+def localPropsFile = file('local.properties')
+if (localPropsFile.isFile()) gradle.ext.localProps.load(localPropsFile.newDataInputStream())
+def exoRoot = file('depends/ExoPlayer')
+
+if (exoRoot.isDirectory()) {
+    gradle.ext.exoplayerRoot = exoRoot
+    gradle.ext.exoplayerModulePrefix = 'exoplayer-'
+    apply from: new File(exoRoot, 'core_settings.gradle')
+}
+
+include ':fermata'
+include ':control'
+include ':utils'
+project(':utils').projectDir = new File('depends/utils')
+
+new File('modules').eachDir {
+    def name = ':' + it.name
+    if ((':exoplayer' == name) && !exoRoot.isDirectory()) return
+    gradle.ext.modules.add(name)
+    include name
+    project(name).projectDir = it
+}

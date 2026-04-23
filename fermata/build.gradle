@@ -32,13 +32,17 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
                     '../proguard-rules.pro', '../depends/utils/proguard-rules.pro'
-            signingConfig signingConfigs.release
+            if (localProps['storeFile'] != null) {
+                signingConfig signingConfigs.release
+            }
         }
 
         debug {
             debuggable true
             applicationIdSuffix '.debug'
-            signingConfig signingConfigs.release
+            if (localProps['storeFile'] != null) {
+                signingConfig signingConfigs.release
+            }
         }
     }
 

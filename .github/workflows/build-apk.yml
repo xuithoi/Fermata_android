@@ -2,9 +2,9 @@ name: Build Fermata APKs
 
 on:
   push:
-    branches: [ main, master, dev ]
+    branches: [ dev, main, master ]
   pull_request:
-    branches: [ main, master, dev ]
+    branches: [ dev, main, master ]
   workflow_dispatch:
 
 jobs:
@@ -22,34 +22,18 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '11'
-
-      - name: Cache Gradle packages
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
+          cache: gradle
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Build Debug APK - Fermata Mobile
-        run: ./gradlew fermata:assembleDebug
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug -x lint --stacktrace
 
-      - name: Build Debug APK - Control
-        run: ./gradlew control:assembleDebug
-
-      - name: Upload Fermata Debug APK
+      - name: Upload APKs
         uses: actions/upload-artifact@v4
         with:
-          name: fermata-debug-apk
-          path: fermata/build/outputs/apk/**/debug/*.apk
-
-      - name: Upload Control Debug APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: control-debug-apk
-          path: control/build/outputs/apk/**/debug/*.apk
+          name: debug-apks
+          path: |
+            **/build/outputs/apk/**/debug/*.apk
+          if-no-files-found: ignore

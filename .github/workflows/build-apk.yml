@@ -1,42 +1,91 @@
-name: Build Fermata APKs
+apply plugin: 'com.google.gms.google-services'
 
-on:
-  push:
-    branches: [ dev, main, master ]
-  pull_request:
-    branches: [ dev, main, master ]
-  workflow_dispatch:
+android {
+    defaultConfig {
+        applicationId "me.aap.fermata"
+        versionCode VERSION_CODE
+        versionName VERSION_NAME
+        setProperty("archivesBaseName", "fermata-$versionName")
+    }
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+    if (localProps['storeFile'] != null) {
+        signingConfigs {
+            release {
+                storeFile file(localProps["storeFile"])
+                storePassword localProps["storePassword"]
+                keyAlias localProps["keyAlias"]
+                keyPassword localProps["keyPassword"]
+            }
+        }
+    }
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          submodules: recursive
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java', 'src/share/java']
+            res.srcDirs = ['src/main/res', 'src/share/res']
+        }
+    }
 
-      - name: Set up JDK 11
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '11'
+    buildTypes {
+        release {
+            debuggable false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
+                    '../proguard-rules.pro', '../depends/utils/proguard-rules.pro'
+            if (localProps['storeFile'] != null) {
+                signingConfig signingConfigs.release
+            }
+        }
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+        debug {
+            debuggable true
+            applicationIdSuffix '.debug'
+            if (localProps['storeFile'] != null) {
+                signingConfig signingConfigs.release
+            }
+        }
+    }
 
-      - name: Build Debug APK - Fermata
-        run: ./gradlew fermata:assembleDebug
+    flavorDimensions "version"
 
-      - name: Build Debug APK - Control
-        run: ./gradlew control:assembleDebug
+    productFlavors {
+        mobile {
+            dimension "version"
+            resValue "string", "app_name", "@string/app_name_mobile"
+            buildConfigField "boolean", 'AUTO', 'false'
+        }
 
-      - name: Upload APKs
-        uses: actions/upload-artifact@v4
-        with:
-          name: debug-apks
-          path: |
-            fermata/build/outputs/apk/**/debug/*.apk
-            control/build/outputs/apk/**/debug/*.apk
-          if-no-files-found: ignore
+        auto {
+            dimension "version"
+            applicationIdSuffix '.auto'
+            resValue "string", "app_name", "@string/app_name_auto"
+            buildConfigField "boolean", 'AUTO', 'true'
+
+            dependencies {
+                implementation fileTree(dir: 'lib/auto', include: ['*.aar'])
+            }
+        }
+    }
+
+    dynamicFeatures.addAll(gradle.ext.modules)
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+    }
+}
+
+dependencies {
+    implementation project(':utils')
+    implementation 'androidx.media:media:' + ANDROIDX_MEDIA_VERSION
+    implementation 'androidx.appcompat:appcompat:' + ANDROIDX_APPCOMPAT_VERSION
+    implementation 'com.google.android.material:material:' + ANDROID_MATERIAL_VERSION
+    implementation "androidx.constraintlayout:constraintlayout:" + ANDROIDX_CONSTRAINTLAYOUT_VERSION
+    implementation 'com.google.android.play:core:' + ANDROID_PLAY_CORE_VERSION
+}

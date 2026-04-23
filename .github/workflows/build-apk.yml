@@ -22,18 +22,21 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '11'
-          cache: gradle
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Build Debug APK
-        run: ./gradlew assembleDebug -x lint --stacktrace
+      - name: Build Debug APK - Fermata
+        run: ./gradlew fermata:assembleDebug
+
+      - name: Build Debug APK - Control
+        run: ./gradlew control:assembleDebug
 
       - name: Upload APKs
         uses: actions/upload-artifact@v4
         with:
           name: debug-apks
           path: |
-            **/build/outputs/apk/**/debug/*.apk
+            fermata/build/outputs/apk/**/debug/*.apk
+            control/build/outputs/apk/**/debug/*.apk
           if-no-files-found: ignore

@@ -1,0 +1,55 @@
+name: Build Fermata APKs
+
+on:
+  push:
+    branches: [ main, master, dev ]
+  pull_request:
+    branches: [ main, master, dev ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+
+      - name: Cache Gradle packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build Debug APK - Fermata Mobile
+        run: ./gradlew fermata:assembleDebug
+
+      - name: Build Debug APK - Control
+        run: ./gradlew control:assembleDebug
+
+      - name: Upload Fermata Debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: fermata-debug-apk
+          path: fermata/build/outputs/apk/**/debug/*.apk
+
+      - name: Upload Control Debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: control-debug-apk
+          path: control/build/outputs/apk/**/debug/*.apk
